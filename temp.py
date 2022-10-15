@@ -6,22 +6,20 @@
 # Description: Terminal-based Fahrenheit/Celsius converter
 
 # Formulas
-# F2C - °C = (°F − 32) × 5/9
-# C2F - °F = °C × 9/5 + 32
+# F2C: °C = (°F − 32) × 5/9
+# C2F: °F = °C × 9/5 + 32
 
-import sys
+from sys import argv, exit
 
 # Convert to Celsius
 def to_celsius(f):
-	c = f - 32.0
-	c = c * 5 / 9
-	print("%.1f" % c + " °C")
-	
+	c = (float(f) - 32.0) * 5 / 9
+	print(f"{'%.1f' %c} °C")	
 
 # Convert to Fahrenheit
 def to_fahrenheit(c):
-	f = c * 9 / 5 + 32
-	print("%.1f" % f + " °F")
+	f = float(c) * 9 / 5 + 32
+	print(f"{'%.1f' %f} °F") 
 	
 
 # Check if passed arg is a number
@@ -34,34 +32,39 @@ def is_number(num):
 		
 		
 def print_help():
-	print("python temp.py -[format] [temp]")
 	print("\nSpecify what you want to convert to:")
 	print("-c  Convert to Celsius")
 	print("-f  Convert to Fahrenheit")
+	print("Formate: python temp.py -[format] [temp]")
 	print("\nExample: python temp.py -c 212")
 	print("Output: 100 °C")
-	sys.exit(2)
+	exit(2)
 
 
 def parseArgs(args):
 	# Make sure that there are two args passed in by user
 	# (the 1st arg is just the file name) so total is 3
+
 	if len(args) > 2:
 		# Get the args
-		conversion = sys.argv[1]  # C or F
-		temp = sys.argv[2]  # Temp value to convert
-		if not is_number(temp):  # If the 2nd input is not a number
-			print_help()
-		if conversion == "-c":
-			to_celsius(float(temp))  # Convert to Celsius
-		elif conversion == "-f":
-			to_fahrenheit(float(temp))  # Convert to Fahrenheit
+		conversion = argv[1]  # C or F
+		temp = argv[2]  # Temp value to convert
+
+		if is_number(temp):  # If the 2nd input is a number
+		
+			if conversion == "-c":
+				to_celsius(temp)  # Convert to Celsius
+		
+			elif conversion == "-f":
+				to_fahrenheit(temp)  # Convert to Fahrenheit
+		
 		else:
-			print_help()
+			print("your value is not an integer.")
+			
 	else:
 		print_help()
 	
 	
 if __name__ == "__main__":
-	parseArgs(sys.argv)
+	parseArgs(argv)
 
