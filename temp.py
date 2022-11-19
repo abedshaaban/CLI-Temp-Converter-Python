@@ -2,7 +2,7 @@
 
 # Author: n-anselm
 # Date created: 221014
-# Date modified: 221015
+# Date modified: 221119
 # Description: Terminal-based Fahrenheit/Celsius converter
 
 # Formulas
@@ -35,7 +35,7 @@ def print_help():
 	print("\nSpecify what you want to convert to:")
 	print("-c  Convert to Celsius")
 	print("-f  Convert to Fahrenheit")
-	print("Formate: python temp.py -[format] [temp]")
+	print("Format: python temp.py -[format] [temp]")
 	print("\nExample: python temp.py -c 212")
 	print("Output: 100 °C")
 	exit(2)
@@ -59,7 +59,7 @@ def parseArgs(args):
 				to_fahrenheit(temp)  # Convert to Fahrenheit
 		
 		else:
-			print("your value is not an integer.")
+			print("Your value is not an integer.")
 			
 	else:
 		print_help()
